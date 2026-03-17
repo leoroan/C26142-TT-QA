@@ -1,0 +1,30 @@
+{
+  // Use IntelliSense para saber los atributos posibles.
+  // Mantenga el puntero para ver las descripciones de los existentes atributos.
+  // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+  // Define la versión del formato de configuración de depuración
+  "version": "0.2.0",
+  // Array que contiene todas las configuraciones de depuración disponibles
+  "configurations": [
+    {
+      // Nombre visible en el selector de configuración de depuración
+      "name": "Depurador de Python: Archivo actual",
+      // Tipo de depurador a usar (debugpy es el depurador oficial de Python)
+      "type": "debugpy",
+      // Tipo de solicitud: "launch" inicia un nuevo proceso, "attach" se conecta a uno existente
+      "request": "launch",
+      // Variable especial que representa el archivo actualmente abierto en el editor
+      "program": "${file}",
+      // Dónde mostrar la salida: "integratedTerminal" usa la terminal integrada de VS Code
+      "console": "integratedTerminal",
+      // Si es true, solo depura tu código, ignora librerías externas
+      "justMyCode": true,
+      // Si es true, pausa la ejecución en la primera línea del programa
+      "stopOnEntry": false,
+      // Si es true, muestra el valor retornado por funciones en el depurador
+      "showReturnValue": true,
+      // Si es true, redirige la salida de print() a la consola de depuración
+      "redirectOutput": true
+    },
+  ]
+}
