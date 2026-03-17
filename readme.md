@@ -3,9 +3,9 @@
 
 ## Estructura del Proyecto
 
-- [Clase 1](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/test1/Clase1)
-- [Clase 2](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/test1/Clase2)
-- [Clase 3](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/test1/Clase3)
+- [Clase 1](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/clase%201)
+- [Clase 2](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/clase%202)
+- [Clase 3](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/clase%203)
 
 
 ## Descripción
