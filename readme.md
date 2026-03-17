@@ -3,9 +3,10 @@
 
 ## Estructura del Proyecto
 
-- [Carpeta 1](./carpeta1/)
-- [Carpeta 2](./carpeta2/)
-- [Carpeta 3](./carpeta3/)
+- [Clase 1](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/test1/Clase1)
+- [Clase 2](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/test1/Clase2)
+- [Clase 3](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/test1/Clase3)
+
 
 ## Descripción
 
@@ -16,15 +17,15 @@ Este repositorio contiene recursos y ejemplos para el curso de automatización d
 
 ## Módulos Disponibles
 
-- **Carpeta 1**: Fundamentos de automatización y configuración del entorno
-- **Carpeta 2**: Casos de prueba y frameworks de testing
-- **Carpeta 3**: Integración continua y mejores prácticas
+- **Clase 1**: Inicializacion, extensiones y brebe test.py file.
+- **Clase 2**: dos actividades simples para verificar el entorno.
+- **Clase 3**: un script de una calculadora con validaciones de errores con try/except
 
 ## Requisitos
 
-- Python 3.8+
-- pytest o unittest
-- Dependencias listadas en `requirements.txt`
+- Python 3.14+
+- pytest
+- Dependencias listadas en `requirements.txt` (not-yet)
 
 ## Instalación
 
@@ -34,5 +35,5 @@ pip install -r requirements.txt
 
 ## Contribuciones
 
-Por favor, revisa la documentación en cada carpeta antes de realizar cambios.
+Por favor, revisa la documentación en cada carpeta antes de realizar cambios, o no.
 
