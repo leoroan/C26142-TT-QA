@@ -15,12 +15,22 @@ Este repositorio contiene recursos y ejemplos para el curso de automatización d
 
 ## Cómo usar
 
+### Ejecutar tests con pytest
+
+Para ejecutar los tests, utiliza el siguiente comando:
+
+```bash
+pytest -v .\test_someDesireScript.py --html=report.html --self-contained-html
+```
+
+Este comando ejecutará los tests en modo verbose (`-v`), generará un reporte HTML autónomo que se puede abrir en cualquier navegador.
 
 ## Módulos Disponibles
 
 - **Clase 1**: Inicializacion, extensiones y brebe test.py file.
 - **Clase 2**: dos actividades simples para verificar el entorno.
 - **Clase 3**: un script de una calculadora con validaciones de errores con try/except
+- **Clase 4**: Intrudccion a PyTest y Automatizacion Básica (proeycto con practica)
 
 ## Requisitos
 
@@ -34,7 +44,5 @@ Este repositorio contiene recursos y ejemplos para el curso de automatización d
 pip install -r requirements.txt
 ```
 
-## Contribuciones
 
-Por favor, revisa la documentación en cada carpeta antes de realizar cambios, o no.
 
