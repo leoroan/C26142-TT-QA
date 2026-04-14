@@ -1,0 +1,160 @@
+/* Reset básico */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+button, input {
+  font: inherit;
+}
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+input {
+  outline: none;
+}
+
+:root {
+  --bg: #e2e8f0;
+  --surface: #e9e5e5;
+  --text: #102a43;
+  --muted: #475569;
+  --border: #cbd5e1;
+  --primary: #2563eb;
+  --primary-strong: #1d4ed8;
+  --success: #0f766e;
+  --surface-alt: #f8fafc;
+  --radius: 1.25rem;
+  --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  --gap: 0.75rem;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top, #f8fafc 0%, #e2e8f0 60%);
+  color: var(--text);
+}
+
+.page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.page__content {
+  width: min(420px, 100%);
+}
+
+.calculadora {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.calculadora__titulo {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: -0.03em;
+}
+
+.calculadora__descripcion {
+  margin: 0.75rem 0 1.75rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.texto-center {
+  text-align: center;
+}
+
+.calculadora__display-wrapper {
+  margin-bottom: 1.25rem;
+}
+
+.calculadora__display {
+  width: 100%;
+  padding: 1.1rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface-alt);
+  color: var(--text);
+  font-size: 1.5rem;
+  text-align: right;
+}
+
+.calculadora__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(64px, 1fr));
+  gap: var(--gap);
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
+  border-radius: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 6px rgba(15, 23, 42, 0.1);
+}
+
+.boton:hover,
+.boton:focus-visible {
+  transform: translateY(-1px);
+}
+
+.boton--numero {
+  background: #f8fafc;
+}
+
+.boton--numero:hover {
+  background: #e2e8f0;
+}
+
+.boton--operador {
+  background: var(--primary);
+  color: white;
+}
+
+.boton--operador:hover {
+  background: var(--primary-strong);
+}
+
+.boton--igual {
+  background: var(--success);
+  color: white;
+}
+
+.boton--igual:hover {
+  background: #0f766e;
+}
+
+.boton--ancho {
+  grid-column: span 2;
+}
+
+.oculto {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

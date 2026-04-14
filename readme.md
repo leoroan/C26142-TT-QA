@@ -7,6 +7,7 @@
 - [Clase 2](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_2)
 - [Clase 3](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_3)
 - [Clase 4](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_4)
+- [Clase 5](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_5)
 
 
 ## Descripción
@@ -43,7 +44,8 @@ Este comando ejecutará los tests en modo verbose (`-v`), generará un reporte H
 - **Clase 1**: Inicializacion, extensiones y brebe test.py file.
 - **Clase 2**: dos actividades simples para verificar el entorno.
 - **Clase 3**: un script de una calculadora con validaciones de errores con try/except
-- **Clase 4**: Intrudccion a PyTest y Automatizacion Básica (proeycto con practica)
+- **Clase 4**: Introduccion a PyTest y Automatizacion Básica (proeycto con practica)
+- **Clase 5**: Introducción a HTML y Estructura de Páginas Web
 
 ## Requisitos
 

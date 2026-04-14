@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora estática</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="page">
+  <main class="page__content">
+    <section class="calculadora" aria-labelledby="calculadora-titulo">
+      <h1 id="calculadora-titulo" class="calculadora__titulo">Calculadora de Lean</h1>
+      <p class="calculadora__descripcion texto-center">Interfaz estática.</p>
+
+      <div class="calculadora__display-wrapper">
+        <label for="display" class="sr-only">Pantalla de la calculadora</label>
+        <input type="text" id="display" name="display" class="calculadora__display" value="0" readonly aria-live="polite">
+      </div>
+
+      <div class="calculadora__grid">
+        <button type="button" id="btn-limpiar" name="btn_limpiar" class="boton boton--operador">C</button>
+        <button type="button" id="btn-borrar" name="btn_borrar" class="boton boton--operador">←</button>
+        <button type="button" id="btn-dividir" name="btn_dividir" class="boton boton--operador">÷</button>
+        <button type="button" id="btn-multiplicar" name="btn_multiplicar" class="boton boton--operador">×</button>
+
+        <button type="button" id="btn-7" name="btn_7" class="boton boton--numero">7</button>
+        <button type="button" id="btn-8" name="btn_8" class="boton boton--numero">8</button>
+        <button type="button" id="btn-9" name="btn_9" class="boton boton--numero">9</button>
+        <button type="button" id="btn-restar" name="btn_restar" class="boton boton--operador">−</button>
+
+        <button type="button" id="btn-4" name="btn_4" class="boton boton--numero">4</button>
+        <button type="button" id="btn-5" name="btn_5" class="boton boton--numero">5</button>
+        <button type="button" id="btn-6" name="btn_6" class="boton boton--numero">6</button>
+        <button type="button" id="btn-sumar" name="btn_sumar" class="boton boton--operador">+</button>
+
+        <button type="button" id="btn-1" name="btn_1" class="boton boton--numero">1</button>
+        <button type="button" id="btn-2" name="btn_2" class="boton boton--numero">2</button>
+        <button type="button" id="btn-3" name="btn_3" class="boton boton--numero">3</button>
+        <button type="button" id="btn-igual" name="btn_igual" class="boton boton--igual">=</button>
+
+        <button type="button" id="btn-0" name="btn_0" class="boton boton--numero boton--ancho">0</button>
+        <button type="button" id="btn-punto" name="btn_punto" class="boton boton--numero">.</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
