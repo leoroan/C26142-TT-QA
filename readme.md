@@ -3,10 +3,10 @@
 
 ## Estructura del Proyecto
 
-- [Clase 1](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/clase_1)
-- [Clase 2](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/clase_2)
-- [Clase 3](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/clase_3)
-- [Clase 4](https://github.com/leoroan/C26142-TT-QA/tree/main/curso-automation-testing/clase_4)
+- [Clase 1](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_1)
+- [Clase 2](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_2)
+- [Clase 3](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_3)
+- [Clase 4](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_4)
 
 
 ## Descripción
@@ -34,7 +34,7 @@ Genera el informe con: pytest --html=report.html. (o el otro de arriba)
 
 ```
 **Ejemplo de reporte generado**
-- [Reporte Calculadora.py con pytest](https://github.com/leoroan/C26142-TT-QA/blob/main/curso-automation-testing/clase_4/tests/report.html) 
+- [Reporte Calculadora.py con pytest](https://github.com/leoroan/C26142-TT-QA/blob/main/clase_4/tests/report.html) 
 
 Este comando ejecutará los tests en modo verbose (`-v`), generará un reporte HTML autónomo que se puede abrir en cualquier navegador.
 
