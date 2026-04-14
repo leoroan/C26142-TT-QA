@@ -39,4 +39,3 @@
 - Se usa `id` para referenciar elementos clave de la interfaz y conservar identificadores estables.
 - Se usan `name` en botones para mejorar la consistencia de campos en formularios o pruebas.
 - Las clases siguen una convención semántica basada en componentes y variaciones visuales.
-"}]}
