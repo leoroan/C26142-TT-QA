@@ -33,6 +33,8 @@ pytest -m exception # solo tests “dividir” con error
 Genera el informe con: pytest --html=report.html. (o el otro de arriba)
 
 ```
+**Ejemplo de reporte generado**
+- [Reporte Calculadora.py con pytest](https://github.com/leoroan/C26142-TT-QA/blob/main/curso-automation-testing/clase_4/tests/report.html) 
 
 Este comando ejecutará los tests en modo verbose (`-v`), generará un reporte HTML autónomo que se puede abrir en cualquier navegador.
 
