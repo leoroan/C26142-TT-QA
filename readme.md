@@ -80,20 +80,17 @@ pip install -r requirements.txt
 
 Por ejemplo, si tienes Chrome 123, descarga ChromeDriver 123. Si las versiones no coinciden obtendrás errores como `SessionNotCreatedException`.
 
-#### Ejemplo en Linux Debian
+#### Ejemplo en windows x64
 
-Para verificar tu versión de Chrome ejecuta:
+Ver versión de ChromeDriver
+Si ya descargaste el chromedriver.exe:
 
-```bash
-google-chrome --version
-```
+1. Abrí la terminal en VS Code con Ctrl + ñ
+2. Andá a la carpeta donde tenés el driver
+3. Ejecutá: .\chromedriver.exe --version
 
-Si obtienes una salida como esta:
-
-```
-Google Chrome 133.0.6943.53
-```
-
-Entonces debes descargar **ChromeDriver 133.0.6943.53** específicamente.
+tambien podes descargar el driver dsde el enlace
+4. lo ejecutas y dejas correindo en el backl (funciona solo local)
+5. listo
 
 **Tip**: Desde Selenium 4.6+ podés usar `Selenium Manager` y evitar manejar drivers manualmente. Solo haces `webdriver.Chrome()` y descarga el driver correcto automáticamente.
