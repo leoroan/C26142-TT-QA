@@ -11,6 +11,7 @@
 - [Clase 6](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_6)
 - [Clase 7](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_7)
 - [Clase 8](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_8)
+- [Pre-entrega](https://github.com/leoroan/C26142-TT-QA/tree/main/pre-entrega)
 
 
 ## Descripción
@@ -51,6 +52,9 @@ Este comando ejecutará los tests en modo verbose (`-v`), generará un reporte H
 - **Clase 5**: Introducción a HTML y Estructura de Páginas Web
 - **Clase 6**: DOM para Automatización
 - **Clase 7**: Introducción a Selenium WebDriver
+- **Clase 8**: Localización de Elementos y Acciones en Selenium
+- **pre entrega**: PRE-ENTREGA | Automatización QA
+
 
 ## Requisitos
 
