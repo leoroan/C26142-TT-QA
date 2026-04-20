@@ -9,6 +9,8 @@
 - [Clase 4](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_4)
 - [Clase 5](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_5)
 - [Clase 6](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_6)
+- [Clase 7](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_7)
+- [Clase 8](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_8)
 
 
 ## Descripción
@@ -48,11 +50,13 @@ Este comando ejecutará los tests en modo verbose (`-v`), generará un reporte H
 - **Clase 4**: Introduccion a PyTest y Automatizacion Básica (proeycto con practica)
 - **Clase 5**: Introducción a HTML y Estructura de Páginas Web
 - **Clase 6**: DOM para Automatización
+- **Clase 7**: Introducción a Selenium WebDriver
 
 ## Requisitos
 
 - Python 3.14+
 - pytest
+- selenium
 - Dependencias listadas en `requirements.txt` (not-yet)
 
 ## Instalación
@@ -61,5 +65,35 @@ Este comando ejecutará los tests en modo verbose (`-v`), generará un reporte H
 pip install -r requirements.txt
 ```
 
+## Selenium WebDrivers 
+*Cada navegador necesita su propio "conductor" para que Selenium pueda controlarlo:*
 
+| Navegador | Driver | Descarga |
+| --- | --- | --- |
+| Chrome | ChromeDriver | https://googlechromelabs.github.io/chrome-for-testing/ |
+| Firefox | GeckoDriver | https://github.com/mozilla/geckodriver/releases |
+| Edge | msedgedriver | https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ |
 
+### Importante: Compatibilidad de versiones
+
+**La versión del driver debe coincidir con la de tu navegador.** 
+
+Por ejemplo, si tienes Chrome 123, descarga ChromeDriver 123. Si las versiones no coinciden obtendrás errores como `SessionNotCreatedException`.
+
+#### Ejemplo en Linux Debian
+
+Para verificar tu versión de Chrome ejecuta:
+
+```bash
+google-chrome --version
+```
+
+Si obtienes una salida como esta:
+
+```
+Google Chrome 133.0.6943.53
+```
+
+Entonces debes descargar **ChromeDriver 133.0.6943.53** específicamente.
+
+**Tip**: Desde Selenium 4.6+ podés usar `Selenium Manager` y evitar manejar drivers manualmente. Solo haces `webdriver.Chrome()` y descarga el driver correcto automáticamente.

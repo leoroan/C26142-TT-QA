@@ -1,3 +1,4 @@
 place-holder
 pytest
 pytest-html
+selenium
