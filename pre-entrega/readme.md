@@ -81,7 +81,12 @@ La entrega debe incluir:
 
 **Generar reporte en HTML de las pruebas realizadas:**
 ```bash
-pytest pre-entrega-final/test_saucedemo.py -v --html=reporte.html
+pytest pre-entrega/tests/test_saucedemo.py -v --html=reports/reporte.html
+```
+
+**Generar reporte en CONSOLA de las pruebas realizadas:**
+```bash
+pytest pre-entrega/tests/test_saucedemo.py -v -s --html=reports/reporte.html
 ```
 
 ---
@@ -103,13 +108,12 @@ pytest pre-entrega-final/test_saucedemo.py -v --html=reporte.html
 4. **Evidencias adicionales:** capturas de pantalla automáticas en caso de fallos y logs de ejecución
 
 ### **Formato de Entrega**
-- **Nombre del repositorio:** `pre-entrega-automation-testing-[nombre-apellido]`
+- **Nombre del repositorio:** `pre-entrega-automation-testing-[Leandro-Maselli]`
 - **Estructura mínima de carpetas:**
   ```
   tests/
   utils/          # funciones auxiliares
-  datos/          # si aplica datos externos como CSV/JSON
   reports/        # reportes HTML y capturas
   ```
-- Compartir enlace al repositorio antes de la fecha límite
-- Commits frecuentes y con mensajes descriptivos que reflejen el progreso
+
+  pytest tests/test_saucedemo.py -v --html=reports/reporte.html --self-contained-html
