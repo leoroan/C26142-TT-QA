@@ -21,10 +21,10 @@ Automatización del flujo principal de compra en SauceDemo, incluyendo login, va
 
 **Generar reporte en HTML de las pruebas realizadas:**
 ```bash
-pytest pre-entrega/tests/test_saucedemo.py -v --html=pre-entrega/reports/reporte.html
+pytest pre-entrega-automation-testing-leandro-maselli/tests/test_saucedemo.py -v --html=pre-entrega/reports/reporte.html
 ```
 
-**Generar reporte en CONSOLA de las pruebas realizadas:**
+**Generar reporte en CONSOLA de las pruebas realizadas:** *recomendando*
 ```bash
-pytest pre-entrega/tests/test_saucedemo.py -v -s --html=pre-entrega/reports/reporte.html
+pytest pre-entrega-automation-testing-leandro-maselli/tests/test_saucedemo.py -v -s --html=pre-entrega/reports/reporte.html
 ```
