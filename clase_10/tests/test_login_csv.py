@@ -2,7 +2,7 @@ import pytest
 from pages.login_page import LoginPage
 from utils.datos import leer_csv_login
 
-# 1. Cargamos los datos leyendo el CSV externo
+# 1. Cargamos los datos con el CSV externo
 CASOS_LOGIN = leer_csv_login('datos/login.csv')
 
 # 2. Parametrizamos inyectando los datos en las variables del test
@@ -21,10 +21,8 @@ def test_login_desde_csv(driver, usuario, clave, debe_funcionar, descripcion):
     
     # 3. Lógica condicional: Validamos según lo que diga el CSV
     if debe_funcionar:
-        # Si el CSV dice True, verificamos que entramos al inventario
         assert "inventory.html" in driver.current_url, f"Falló el login para el usuario válido: {usuario}"
     else:
-        # Si el CSV dice False, verificamos que NO entramos y seguimos en la pantalla de login
         assert "inventory.html" not in driver.current_url, f"Se permitió el ingreso al usuario inválido: {usuario}"
 
 
@@ -35,7 +33,6 @@ def test_login_usuario_valido_smoke(driver):
     print("\n[INFO] Ejecutando Smoke Test de Login...")
     login_page = LoginPage(driver)
     
-    # Usamos el método rápido de login completo que armamos en tu POM
     login_page.abrir().login_completo("standard_user", "secret_sauce")
     
     assert "inventory.html" in driver.current_url

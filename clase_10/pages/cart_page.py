@@ -11,7 +11,6 @@ class CartPage:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
-        # Verificar que estamos en la página correcta apenas se crea el objeto
         self.wait.until(EC.url_contains("cart.html"))
 
     def obtener_productos_en_carrito(self):
@@ -32,5 +31,4 @@ class CartPage:
     def proceder_checkout(self):
         """Inicia el proceso de checkout."""
         self.driver.find_element(*self._CHECKOUT_BUTTON).click()
-        # Aquí podrías devolver CheckoutPage cuando la implementes en un futuro
         return self

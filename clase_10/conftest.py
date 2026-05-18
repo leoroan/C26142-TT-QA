@@ -1,5 +1,5 @@
-import pytest
 import time
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -9,7 +9,6 @@ from selenium.webdriver.chrome.options import Options
 def driver():
     """Fixture que proporciona un WebDriver configurado."""
     chrome_options = Options()
-    # chrome_options.add_argument("--headless")  # Para CI/CD
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     
@@ -20,5 +19,5 @@ def driver():
     
     yield driver
     
-    time.sleep(1)  # Para ver el resultado final
+    time.sleep(1)
     driver.quit()

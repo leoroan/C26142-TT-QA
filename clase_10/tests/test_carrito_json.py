@@ -8,18 +8,16 @@ from utils.datos import leer_json_productos
 # 1. Cargamos los datos leyendo el archivo JSON externo
 PRODUCTOS = leer_json_productos('datos/productos.json')
 
-# 2. Fixture para evitar repetir el login en cada test
+# 2. Fixture para evitar repetir el login
 @pytest.fixture
 def usuario_logueado(driver):
     """Fixture que realiza login antes de cada test de carrito."""
     print("\n[PRE-CONDICIÓN] Iniciando sesión para interactuar con el carrito...")
     login_page = LoginPage(driver)
     login_page.abrir().login_completo("standard_user", "secret_sauce")
-    
-    # Devolvemos el driver ya posicionado en la página de inventario
     return driver
 
-# 3. Parametrización: Inyectamos cada diccionario del JSON en el test
+# 3. Inyectamos cada diccionario del JSON en el test
 @pytest.mark.parametrize("producto", PRODUCTOS)
 def test_agregar_producto_desde_json(usuario_logueado, producto):
     """Test que agrega cada producto del JSON al carrito."""
@@ -40,7 +38,7 @@ def test_agregar_producto_desde_json(usuario_logueado, producto):
     assert badge_carrito == "1", f"Error: No se actualizó el contador al agregar {nombre_producto}"
 
 
-# 4. Test de Smoke (Validación rápida)
+# 4. Test de Smoke
 @pytest.mark.smoke
 def test_carrito_smoke(usuario_logueado):
     """Test de smoke que verifica funcionalidad básica del carrito."""
