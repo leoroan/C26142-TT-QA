@@ -14,6 +14,7 @@
 - [Pre-entrega](https://github.com/leoroan/C26142-TT-QA/tree/main/pre-entrega-automation-testing-leandro-maselli)
 - [Clase 9](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_9/pre-entrega-pom)
 - [Clase 10](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_10)
+- [Clase 11](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_11)
 
 ## Descripción
 
