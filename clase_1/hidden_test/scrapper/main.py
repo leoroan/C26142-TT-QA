@@ -9,6 +9,7 @@ from fetcher import (
 
 from parsers.parser import parse_fondos
 from parsers.parser_detalle import (parse_fondo_detalle)
+from parsers.parser_pdf import extract_pdf_text
 from storage import (save_csv,save_detail_csv)
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -85,6 +86,32 @@ def main():
                   print(
                       f"PDF descargado: "
                       f"{pdf_file}"
+                  )
+                  
+                  # -------------------------
+                  # extraer texto
+                  # -------------------------
+          
+                  text = extract_pdf_text(
+                      pdf_file
+                  )
+          
+                  txt_file = (
+                      PDF_DIR /
+                      f"{fondo.id}_{index}_{timestamp}.txt"
+                  )
+          
+                  with open(
+                      txt_file,
+                      "w",
+                      encoding="utf-8"
+                  ) as f:
+          
+                      f.write(text)
+          
+                  print(
+                      f"TXT generado: "
+                      f"{txt_file}"
                   )
           
               except Exception as e:
