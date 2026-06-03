@@ -156,28 +156,7 @@ def parse_fondo_detalle(html, fondo_id):
             if "Fact" in label:
                 factsheet_url = href
 
-    # links inferiores
-
-    footer_links = soup.select(
-        "a[href]"
-    )
-
-    for link in footer_links:
-
-        href = link.get("href", "")
-
-        label = link.get_text(
-            " ",
-            strip=True
-        )
-
-        if "Reglamento" in label:
-            reglamento_url = href
-
-        elif "Calificaciones" in label:
-            calificaciones_url = href
-
-     # -------------------------
+    # -------------------------
     # tenencias
     # -------------------------
 
@@ -239,8 +218,6 @@ def parse_fondo_detalle(html, fondo_id):
         fecha_informacion=fecha_informacion,
         patrimonio=patrimonio,
         factsheet_url=factsheet_url,
-        reglamento_url=reglamento_url,
-        calificaciones_url=calificaciones_url,
         fecha_scraping=datetime.now().isoformat(),
     )
 

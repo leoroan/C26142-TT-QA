@@ -1,0 +1,4 @@
+[
+    "BANCO MACRO S.A.",
+    "BANCO PATAGONIA S.A.",
+]

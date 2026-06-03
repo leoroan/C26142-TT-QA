@@ -21,7 +21,5 @@ class FondoDetalle:
     fecha_informacion: Optional[date]
 
     factsheet_url: Optional[str]
-    reglamento_url: Optional[str]
-    calificaciones_url: Optional[str]
 
     fecha_scraping: str

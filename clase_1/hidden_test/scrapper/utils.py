@@ -1,3 +1,5 @@
+import re
+
 from decimal import Decimal
 from datetime import datetime
 
@@ -76,3 +78,32 @@ def parse_spanish_date(value):
 
     except:
         return None
+    
+    
+    import re
+import unicodedata
+
+
+def slugify(value):
+
+    value = unicodedata.normalize(
+        "NFKD",
+        value
+    ).encode(
+        "ascii",
+        "ignore"
+    ).decode(
+        "ascii"
+    )
+
+    value = value.lower()
+
+    value = re.sub(
+        r"[^a-z0-9]+",
+        "_",
+        value
+    )
+
+    value = value.strip("_")
+
+    return value
