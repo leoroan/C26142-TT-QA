@@ -1,6 +1,7 @@
 {
     "python.analysis.extraPaths": [
-        "${workspaceFolder}"
+        "${workspaceFolder}",
+        "./clase_1/hidden_test/scrapper/parsers"
     ],
     "python.autoComplete.extraPaths": [
         "${workspaceFolder}"
