@@ -2,8 +2,10 @@
 scrapper/snapshots/detail/*
 scrapper/snapshots/list/*
 scrapper/snapshots/pdf/*
+scrapper/snapshots/cuotapartes/*
 
 # Pero permitir .gitkeep para mantener las carpetas
 !scrapper/snapshots/detail/.gitkeep
 !scrapper/snapshots/list/.gitkeep
 !scrapper/snapshots/pdf/.gitkeep
+!scrapper/snapshots/cuotapartes/.gitkeep
