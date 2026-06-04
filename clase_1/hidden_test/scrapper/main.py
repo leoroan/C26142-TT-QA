@@ -24,10 +24,15 @@ from parsers.parser_cuotaparte import (
     parse_cuotapartes,
 )
 
+from parsers.parser_factsheet import (
+    parse_factsheet,
+)
+
 from storage import (
     save_csv,
     save_detail_csv,
     save_cuotapartes_csv,
+    save_factsheets_csv,
 )
 
 from utils import slugify
@@ -120,14 +125,13 @@ def main():
     )
 
     # -------------------------
-    # detalles
+    # detalles & factsheets
     # -------------------------
 
     detalles = []
+    factsheets = [] 
 
-    # solo primeros 3 por ahora
-
-    for fondo in fondos:
+    for fondo in fondos[:1]:
 
         print(
             f"\nProcesando detalle: "
@@ -226,6 +230,22 @@ def main():
                             f"TXT generado: "
                             f"{txt_file}"
                         )
+                        
+                        # -------------------------
+                        # parse factsheet
+                        # -------------------------
+                        
+                        factsheet = parse_factsheet(
+                            text,
+                            fondo.id
+                        )
+
+                        factsheets.append(factsheet)
+
+                        print(
+                            f"Factsheet parseado: "
+                            f"{fondo.nombre}"
+                        )
 
                 except Exception as e:
 
@@ -319,7 +339,7 @@ def main():
             )
 
     # -------------------------
-    # guardar csv detalle
+    # guardar csv detalle & factsheets
     # -------------------------
 
     if detalles:
@@ -337,6 +357,23 @@ def main():
         print(
             f"\nCSV detalle generado: "
             f"{detail_csv_file}"
+        )
+        
+    if factsheets:
+
+        factsheet_csv_file = (
+            PDF_DIR /
+            f"factsheets_{timestamp}.csv"
+        )
+
+        save_factsheets_csv(
+            factsheets,
+            factsheet_csv_file
+        )
+
+        print(
+            f"\nCSV factsheets generado: "
+            f"{factsheet_csv_file}"
         )
 
 
