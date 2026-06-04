@@ -5,21 +5,20 @@ from models.fondo import Fondo
 
 BASE_URL = "https://www.provinciafondos.com.ar"
 
+
 def parse_fondos(html):
     soup = BeautifulSoup(html, "html.parser")
 
     fondos = []
     seen_ids = set()
-    
+
     cards = soup.select("div.shadow-lg")
 
     for card in cards:
 
         try:
 
-            link = card.select_one(
-                "a[href*='/nuestros-fondos/']"
-            )
+            link = card.select_one("a[href*='/nuestros-fondos/']")
 
             if not link:
                 continue
@@ -27,17 +26,14 @@ def parse_fondos(html):
             href = link.get("href", "").strip()
 
             fondo_id = href.split("/")[-1]
-            
+
             if fondo_id in seen_ids:
-              continue
+                continue
 
             seen_ids.add(fondo_id)
 
-            nombre = (
-                card.select_one(
-                    "div.bg-primary-light span.font-bold"
-                )
-                .get_text(strip=True)
+            nombre = card.select_one("div.bg-primary-light span.font-bold").get_text(
+                strip=True
             )
 
             rows = card.select("div.py-2.flex")
@@ -59,9 +55,7 @@ def parse_fondos(html):
                 elif "Pesos" in texto:
                     moneda = "ARS"
 
-                riesgo_el = rows[0].select_one(
-                    "span.capitalize"
-                )
+                riesgo_el = rows[0].select_one("span.capitalize")
 
                 if riesgo_el:
                     riesgo = riesgo_el.get_text(strip=True)
@@ -72,32 +66,19 @@ def parse_fondos(html):
                 spans = rows[1].select("span")
 
                 if len(spans) >= 1:
-                    horizonte = spans[0].get_text(
-                        " ",
-                        strip=True
-                    )
+                    horizonte = spans[0].get_text(" ", strip=True)
 
                 if len(spans) >= 2:
-                    categoria = spans[-1].get_text(
-                        strip=True
-                    )
+                    categoria = spans[-1].get_text(strip=True)
 
             # fila 3
             if len(rows) >= 3:
 
-                texto = rows[2].get_text(
-                    " ",
-                    strip=True
-                )
+                texto = rows[2].get_text(" ", strip=True)
 
                 if "%" in texto:
 
-                    valor = (
-                        texto
-                        .split("%")[0]
-                        .split()[-1]
-                        .replace(",", ".")
-                    )
+                    valor = texto.split("%")[0].split()[-1].replace(",", ".")
 
                     variacion_diaria = float(valor)
 

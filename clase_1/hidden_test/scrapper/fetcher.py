@@ -7,6 +7,7 @@ import requests
 
 URL = "https://www.provinciafondos.com.ar/nuestros-fondos"
 
+
 def build_driver():
 
     options = Options()
@@ -23,21 +24,14 @@ def build_driver():
     options.add_argument("--log-level=3")
 
     # tamaño consistente
-    options.add_argument(
-        "--window-size=1920,1080"
-    )
+    options.add_argument("--window-size=1920,1080")
 
-    return webdriver.Chrome(
-        options=options
-    )
+    return webdriver.Chrome(options=options)
 
 
 def download_pdf(url, filepath):
 
-    response = requests.get(
-        url,
-        timeout=30
-    )
+    response = requests.get(url, timeout=30)
 
     response.raise_for_status()
 
@@ -55,10 +49,7 @@ def get_html():
 
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located(
-                (
-                    By.CSS_SELECTOR,
-                    "a[href*='/nuestros-fondos/']"
-                )
+                (By.CSS_SELECTOR, "a[href*='/nuestros-fondos/']")
             )
         )
 
@@ -79,10 +70,7 @@ def get_detail_html(url):
 
         WebDriverWait(driver, 30).until(
             EC.presence_of_element_located(
-                (
-                    By.XPATH,
-                    "//h3[contains(., 'Rendimiento')]"
-                )
+                (By.XPATH, "//h3[contains(., 'Rendimiento')]")
             )
         )
 
@@ -108,10 +96,7 @@ def get_cuotapartes_html(fondo_id):
 
         WebDriverWait(driver, 30).until(
             EC.presence_of_element_located(
-                (
-                    By.XPATH,
-                    "//h3[contains(., 'Histórico valores')]"
-                )
+                (By.XPATH, "//h3[contains(., 'Histórico valores')]")
             )
         )
 

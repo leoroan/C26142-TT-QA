@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class FactSheet:
 
     fondo_id: str
-
+    fondo_nombre: str
     fecha_reporte: str | None = None
 
     moneda: str | None = None

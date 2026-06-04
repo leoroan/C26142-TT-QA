@@ -1,31 +1,33 @@
-from pathlib import Path
 from datetime import datetime
 
-from fetcher import (
-    get_html,
-    get_detail_html,
-    download_pdf,
-    get_cuotapartes_html,
+from config import (
+    SAVE_DEBUG_HTML,
+    SAVE_FACTSHEET_TXT,
+    PROCESS_ONLY_FIRST,
 )
 
-from parsers.parser import (
-    parse_fondos,
+from paths import (
+    ensure_directories,
+    LIST_DIR,
+    DETAIL_DIR,
+    PDF_DIR,
+    CUOTAPARTE_DIR,
 )
 
-from parsers.parser_detalle import (
-    parse_fondo_detalle,
+from services.fondos_service import (
+    obtener_fondos,
 )
 
-from parsers.parser_pdf import (
-    extract_pdf_text,
+from services.detalle_service import (
+    obtener_detalle,
 )
 
-from parsers.parser_cuotaparte import (
-    parse_cuotapartes,
+from services.factsheet_service import (
+    procesar_factsheet,
 )
 
-from parsers.parser_factsheet import (
-    parse_factsheet,
+from services.cuotaparte_service import (
+    obtener_cuotapartes,
 )
 
 from storage import (
@@ -37,344 +39,126 @@ from storage import (
 
 from utils import slugify
 
-SAVE_DEBUG_HTML = False
-SAVE_FACTSHEET_TXT = True
 
-BASE_DIR = Path(__file__).resolve().parent
+def save_text_file(path, content):
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
 
-SNAPSHOTS_DIR = BASE_DIR / "snapshots"
 
-LIST_DIR = SNAPSHOTS_DIR / "list"
-DETAIL_DIR = SNAPSHOTS_DIR / "detail"
-PDF_DIR = SNAPSHOTS_DIR / "pdf"
-CUOTAPARTE_DIR = SNAPSHOTS_DIR / "cuotapartes"
+def process_factsheet(fondo, detalle, timestamp, factsheets):
+    pdf_url = detalle.factsheet_url
 
-LIST_DIR.mkdir(
-    parents=True,
-    exist_ok=True
-)
+    if not pdf_url:
+        return
 
-DETAIL_DIR.mkdir(
-    parents=True,
-    exist_ok=True
-)
+    safe_name = slugify(fondo.nombre)
 
-PDF_DIR.mkdir(
-    parents=True,
-    exist_ok=True
-)
+    pdf_file = PDF_DIR / f"{safe_name}_factsheet_{timestamp}.pdf"
 
-CUOTAPARTE_DIR.mkdir(
-    parents=True,
-    exist_ok=True
-)
+    txt_file = PDF_DIR / f"{safe_name}_factsheet_{timestamp}.txt"
+
+    factsheet = procesar_factsheet(
+        pdf_url,
+        pdf_file,
+        txt_file,
+        fondo.id,
+        fondo.nombre
+    )
+
+    print(f"Factsheet procesado: " f"{fondo.nombre}")
+
+    factsheets.append(factsheet)
+
+
+def process_cuotapartes(fondo, timestamp):
+    safe_name = slugify(fondo.nombre)
+
+    html, cuotapartes = obtener_cuotapartes(fondo)
+
+    print(f"Cuotapartes encontradas: " f"{len(cuotapartes)}")
+
+    if SAVE_DEBUG_HTML:
+
+        html_file = CUOTAPARTE_DIR / f"{safe_name}_cuotapartes_{timestamp}.html"
+
+        save_text_file(html_file, html)
+
+    csv_file = CUOTAPARTE_DIR / f"{safe_name}_cuotapartes_{timestamp}.csv"
+
+    save_cuotapartes_csv(cuotapartes, csv_file)
+
+    print(f"CSV cuotapartes generado: " f"{csv_file}")
+
+
+def process_fondo(fondo, timestamp, detalles, factsheets):
+    print(f"\nProcesando detalle: " f"{fondo.nombre}")
+
+    safe_name = slugify(fondo.nombre)
+
+    detail_html, detalle, tenencias = obtener_detalle(fondo)
+
+    detalles.append(detalle)
+
+    if SAVE_DEBUG_HTML:
+
+        detail_file = DETAIL_DIR / f"detalle_{safe_name}_{timestamp}.html"
+
+        save_text_file(detail_file, detail_html)
+
+    try:
+        process_factsheet(fondo, detalle, timestamp, factsheets)
+
+    except Exception as e:
+
+        print(f"Error factsheet: {e}")
+
+    try:
+        process_cuotapartes(fondo, timestamp)
+
+    except Exception as e:
+
+        print(f"Error cuotapartes: {e}")
 
 
 def main():
+    ensure_directories()
 
-    timestamp = datetime.now().strftime(
-        "%Y%m%d_%H%M%S"
-    )
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    # -------------------------
-    # listado principal
-    # -------------------------
+    html, fondos = obtener_fondos()
 
-    html = get_html()
+    print(f"Fondos encontrados: " f"{len(fondos)}")
 
-    fondos = parse_fondos(html)
+    csv_file = LIST_DIR / f"los_fondos_{timestamp}.csv"
 
-    print(
-        f"Fondos encontrados: "
-        f"{len(fondos)}"
-    )
-
-    # guardar html listado para debug de html
-    if SAVE_DEBUG_HTML:
-        list_html_file = (
-            LIST_DIR /
-            f"fondos_{timestamp}.html"
-        )
-
-        with open(
-            list_html_file,
-            "w",
-            encoding="utf-8"
-        ) as f:
-            f.write(html)
-
-        print(
-            f"HTML listado generado: "
-            f"{list_html_file}"
-        )
-
-    # guardar csv listado
-    csv_file = (
-        LIST_DIR /
-        f"los_fondos_{timestamp}.csv"
-    )
-
-    save_csv(
-        fondos,
-        csv_file
-    )
-
-    print(
-        f"CSV del listado de los fondos generado: "
-        f"{csv_file}"
-    )
-
-    # -------------------------
-    # detalles & factsheets
-    # -------------------------
+    save_csv(fondos, csv_file)
 
     detalles = []
-    factsheets = [] 
+    factsheets = []
 
-    for fondo in fondos[:1]:
+    fondos_to_process = fondos[:1] if PROCESS_ONLY_FIRST else fondos
 
-        print(
-            f"\nProcesando detalle: "
-            f"{fondo.nombre}"
-        )
+    for fondo in fondos_to_process:
 
         try:
 
-            safe_name = slugify(
-                fondo.nombre
-            )
-
-            # -------------------------
-            # detalle html
-            # -------------------------
-
-            detail_html = get_detail_html(
-                fondo.url_detalle
-            )
-
-            if SAVE_DEBUG_HTML:
-                detail_file = (
-                    DETAIL_DIR /
-                    f"detalle_{safe_name}_{timestamp}.html"
-                )
-
-                with open(
-                    detail_file,
-                    "w",
-                    encoding="utf-8"
-                ) as f:
-                    f.write(detail_html)
-
-                print(
-                    f"HTML detalle del fondo, para DEBUG generado: "
-                    f"{detail_file}"
-                )
-
-            # -------------------------
-            # parse detalle
-            # -------------------------
-
-            detalle, tenencias = parse_fondo_detalle(
-                detail_html,
-                fondo.id
-            )
-
-            detalles.append(detalle)
-
-            # -------------------------
-            # factsheet pdf
-            # -------------------------
-
-            pdf_url = detalle.factsheet_url
-
-            if pdf_url:
-
-                try:
-                    
-                    pdf_file = (
-                        PDF_DIR /
-                        f"{safe_name}_factsheet_{timestamp}.pdf"
-                    )
-                    download_pdf(
-                        pdf_url,
-                        pdf_file
-                    )
-                    print(
-                        f"PDF descargado: "
-                        f"{pdf_file}"
-                    )
-
-                    # -------------------------
-                    # extraer texto pdf
-                    # -------------------------
-
-                    if SAVE_FACTSHEET_TXT:
-                        text = extract_pdf_text(
-                            pdf_file
-                        )
-
-                        txt_file = (
-                            PDF_DIR /
-                            f"{safe_name}_factsheet_{timestamp}.txt"
-                        )
-
-                        with open(
-                            txt_file,
-                            "w",
-                            encoding="utf-8"
-                        ) as f:
-
-                            f.write(text)
-
-                        print(
-                            f"TXT generado: "
-                            f"{txt_file}"
-                        )
-                        
-                        # -------------------------
-                        # parse factsheet
-                        # -------------------------
-                        
-                        factsheet = parse_factsheet(
-                            text,
-                            fondo.id
-                        )
-
-                        factsheets.append(factsheet)
-
-                        print(
-                            f"Factsheet parseado: "
-                            f"{fondo.nombre}"
-                        )
-
-                except Exception as e:
-
-                    print(
-                        f"Error procesando "
-                        f"factsheet PDF: {e}"
-                    )
-
-            # -------------------------
-            # cuotapartes
-            # -------------------------
-
-            try:
-                cuotapartes_html = (
-                    get_cuotapartes_html(
-                        fondo.id
-                    )
-                )
-
-                if SAVE_DEBUG_HTML:
-                    cuotaparte_html_file = (
-                        CUOTAPARTE_DIR /
-                        f"{safe_name}_cuotapartes_{timestamp}.html"
-                    )
-
-                    with open(
-                        cuotaparte_html_file,
-                        "w",
-                        encoding="utf-8"
-                    ) as f:
-
-                        f.write(cuotapartes_html)
-
-                    print(
-                        f"HTML cuotapartes generado: "
-                        f"{cuotaparte_html_file}"
-                    )
-
-                # -------------------------
-                # parse cuotapartes
-                # -------------------------
-
-                cuotapartes = parse_cuotapartes(
-                    cuotapartes_html,
-                    fondo.id
-                )
-
-                print(
-                    f"Cuotapartes encontradas: "
-                    f"{len(cuotapartes)}"
-                )
-
-                # -------------------------
-                # guardar csv cuotapartes
-                # -------------------------
-
-                cuotapartes_csv = (
-                    CUOTAPARTE_DIR /
-                    f"{safe_name}_cuotapartes_{timestamp}.csv"
-                )
-
-                save_cuotapartes_csv(
-                    cuotapartes,
-                    cuotapartes_csv
-                )
-
-                print(
-                    f"CSV cuotapartes generado: "
-                    f"{cuotapartes_csv}"
-                )
-
-            except Exception as e:
-
-                print(
-                    f"Error procesando "
-                    f"cuotapartes: {e}"
-                )
-
-            # -------------------------
-            # debug
-            # -------------------------
-
-            # print(detalle)
-            # print(tenencias)
+            process_fondo(fondo, timestamp, detalles, factsheets)
 
         except Exception as e:
 
-            print(
-                f"Error procesando "
-                f"{fondo.nombre}: {e}"
-            )
-
-    # -------------------------
-    # guardar csv detalle & factsheets
-    # -------------------------
+            print(f"Error procesando " f"{fondo.nombre}: {e}")
 
     if detalles:
 
-        detail_csv_file = (
-            DETAIL_DIR /
-            f"detalles_{timestamp}.csv"
-        )
+        detail_csv = DETAIL_DIR / f"detalles_{timestamp}.csv"
 
-        save_detail_csv(
-            detalles,
-            detail_csv_file
-        )
+        save_detail_csv(detalles, detail_csv)
 
-        print(
-            f"\nCSV detalle generado: "
-            f"{detail_csv_file}"
-        )
-        
     if factsheets:
 
-        factsheet_csv_file = (
-            PDF_DIR /
-            f"factsheets_{timestamp}.csv"
-        )
+        factsheet_csv = PDF_DIR / f"factsheets_{timestamp}.csv"
 
-        save_factsheets_csv(
-            factsheets,
-            factsheet_csv_file
-        )
-
-        print(
-            f"\nCSV factsheets generado: "
-            f"{factsheet_csv_file}"
-        )
+        save_factsheets_csv(factsheets, factsheet_csv)
 
 
 if __name__ == "__main__":

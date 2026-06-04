@@ -18,3 +18,6 @@ Eso te permite:
   comparar cambios de DOM,
   mejorar selectores sin pegarle al sitio,
   desarrollar sin Selenium abierto.
+
+runnealo asi : (desde clase_1 sino ajustalo)
+  python  .\hidden_test\scrapper\main.py

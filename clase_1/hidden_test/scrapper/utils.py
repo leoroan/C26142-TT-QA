@@ -9,12 +9,7 @@ def parse_percentage(value):
     if not value:
         return None
 
-    value = (
-        value
-        .replace("%", "")
-        .replace(",", ".")
-        .strip()
-    )
+    value = value.replace("%", "").replace(",", ".").strip()
 
     try:
         return float(value)
@@ -28,13 +23,7 @@ def parse_money(value):
     if not value:
         return None
 
-    cleaned = (
-        value
-        .replace("$", "")
-        .replace(".", "")
-        .replace(",", ".")
-        .strip()
-    )
+    cleaned = value.replace("$", "").replace(".", "").replace(",", ".").strip()
 
     try:
         return Decimal(cleaned)
@@ -70,39 +59,26 @@ def parse_spanish_date(value):
 
         year = int(parts[4])
 
-        return datetime(
-            year,
-            month,
-            day
-        ).date()
+        return datetime(year, month, day).date()
 
     except:
         return None
-    
-    
+
     import re
+
+
 import unicodedata
 
 
 def slugify(value):
 
-    value = unicodedata.normalize(
-        "NFKD",
-        value
-    ).encode(
-        "ascii",
-        "ignore"
-    ).decode(
-        "ascii"
+    value = (
+        unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
     )
 
     value = value.lower()
 
-    value = re.sub(
-        r"[^a-z0-9]+",
-        "_",
-        value
-    )
+    value = re.sub(r"[^a-z0-9]+", "_", value)
 
     value = value.strip("_")
 

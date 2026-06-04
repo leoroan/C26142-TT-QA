@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from models.cuotaparte import Cuotaparte
 
 
-def parse_cuotapartes(html, fondo_id):
+def parse_cuotapartes(html, fondo_id, fondo_nombre):
 
     soup = BeautifulSoup(
         html,
@@ -30,18 +30,18 @@ def parse_cuotapartes(html, fondo_id):
 
         numero_fondo = cols[1].get_text(strip=True)
 
-        nombre_fondo = cols[2].get_text(strip=True)
+        # nombre_fondo = cols[2].get_text(strip=True)
 
         valor = cols[3].get_text(strip=True)
 
         resultados.append(
             Cuotaparte(
                 fondo_id=fondo_id,
-                clase="Clase A",
+                nombre_fondo=fondo_nombre,
                 fecha=fecha,
-                numero_fondo=numero_fondo,
-                nombre_fondo=nombre_fondo,
                 valor=float(valor),
+                clase="Clase A",
+                numero_fondo=numero_fondo,
             )
         )
 
