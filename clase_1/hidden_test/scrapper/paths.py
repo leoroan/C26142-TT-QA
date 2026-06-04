@@ -23,3 +23,20 @@ def ensure_directories():
             parents=True,
             exist_ok=True
         )
+        
+def get_latest_csv(
+    directory,
+    pattern="*.csv"
+):
+    files = sorted(
+        directory.glob(pattern),
+        key=lambda f: f.stat().st_mtime,
+        reverse=True
+    )
+
+    if not files:
+        raise FileNotFoundError(
+            f"No se encontraron CSVs en {directory}"
+        )
+
+    return files[0]

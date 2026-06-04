@@ -136,7 +136,7 @@ def main():
     detalles = []
     factsheets = []
 
-    fondos_to_process = fondos[:1] if PROCESS_ONLY_FIRST else fondos
+    fondos_to_process = fondos if PROCESS_ONLY_FIRST else fondos
 
     for fondo in fondos_to_process:
 
