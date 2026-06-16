@@ -1,5 +1,0 @@
-place-holder
-pytest
-pytest-html
-selenium
-webdriver-manager
