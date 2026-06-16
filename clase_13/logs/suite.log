@@ -1,0 +1,21 @@
+2026-06-16 10:45:06,776 | INFO | LOGGER FUNCIONANDO
+2026-06-16 10:45:26,855 | INFO | LOGGER FUNCIONANDO
+2026-06-16 10:45:42,314 | INFO | ===== INICIO TEST POST LIFECYCLE =====
+2026-06-16 10:45:42,314 | INFO | Creando recurso
+2026-06-16 10:45:42,867 | INFO | POST OK | id=101 | tiempo=0.55s
+2026-06-16 10:45:42,867 | INFO | Actualizando recurso 101
+2026-06-16 10:45:43,304 | INFO | PATCH OK | tiempo=0.44s
+2026-06-16 10:45:43,304 | INFO | Eliminando recurso 101
+2026-06-16 10:45:43,779 | INFO | DELETE OK | tiempo=0.48s
+2026-06-16 10:45:43,780 | INFO | ===== FIN TEST (1.47s) =====
+2026-06-16 10:45:43,787 | INFO | LOGGER FUNCIONANDO
+2026-06-16 10:45:45,089 | INFO | ===== INICIO TEST UI =====
+2026-06-16 10:45:45,089 | INFO | Abriendo SauceDemo
+2026-06-16 10:45:45,461 | INFO | Realizando login
+2026-06-16 10:45:45,762 | INFO | Validando redirección
+2026-06-16 10:45:45,799 | INFO | Verificando catálogo
+2026-06-16 10:45:45,906 | INFO | Producto encontrado: Sauce Labs Backpack
+2026-06-16 10:45:45,906 | INFO | Agregando producto al carrito: Sauce Labs Backpack
+2026-06-16 10:45:45,972 | INFO | Badge actualizado correctamente
+2026-06-16 10:45:46,045 | INFO | Producto validado en carrito: Sauce Labs Backpack
+2026-06-16 10:45:46,045 | INFO | ===== FIN TEST UI =====

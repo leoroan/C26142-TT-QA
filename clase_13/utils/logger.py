@@ -1,14 +1,16 @@
 import logging
-import pathlib
+from pathlib import Path
 
-audit_dir = pathlib.Path('logs')
-audit_dir.mkdir(exist_ok=True)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+log_dir = BASE_DIR / "logs"
+log_dir.mkdir(exist_ok=True)
 
 logging.basicConfig(
-    filename=audit_dir / 'suite.log',
+    filename=log_dir / "suite.log",
     level=logging.INFO,
-    format='%(asctime)s %(levelname)s %(name)s – %(message)s',
-    datefmt='%H:%M:%S'
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    force=True
 )
 
-logger = logging.getLogger('talentolab')
+logger = logging.getLogger("talentolab")

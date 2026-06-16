@@ -94,7 +94,6 @@ cover/
 *.pot
 
 # Django stuff:
-*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -181,4 +180,8 @@ cython_debug/
 tests/coverage/
 
 src/env.js
+
+__pycache__/
+.pytest_cache/
+*.pyc
 

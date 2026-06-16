@@ -2,9 +2,10 @@ import pytest
 import requests
 import time
 from faker import Faker
+from utils.settings import BASE_URL_API
 
 fake = Faker()
-BASE_URL = 'https://jsonplaceholder.typicode.com'
+BASE_URL = BASE_URL_API
 
 @pytest.mark.e2e
 def test_post_lifecycle():
