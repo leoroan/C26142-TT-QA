@@ -6,7 +6,7 @@ def test_behave_smoke():
     resultado = subprocess.run(
         ["behave", "-t", "@smoke"],
         capture_output=True,
-        text=True
+        text=True,
         check=False
     )
 
@@ -18,7 +18,7 @@ def test_behave_regression():
     resultado = subprocess.run(
         ["behave", "-t", "@regression"],
         capture_output=True,
-        text=True
+        text=True,
         check=False
     )
 

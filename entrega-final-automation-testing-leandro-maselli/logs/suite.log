@@ -1,0 +1,13 @@
+2026-06-22 18:31:38,696 | INFO | Login realizado
+2026-06-22 18:31:38,763 | INFO | Producto agregado
+2026-06-22 18:31:41,634 | INFO | Abriendo login
+2026-06-22 18:31:41,919 | INFO | Login con usuario standard_user
+2026-06-22 18:31:45,068 | INFO | Abriendo login
+2026-06-22 18:31:45,318 | INFO | Login con usuario locked_out_user
+2026-06-22 18:31:48,404 | INFO | Abriendo login
+2026-06-22 18:31:48,689 | INFO | Login con usuario usuario_fake
+2026-06-22 18:31:51,751 | INFO | Abriendo login
+2026-06-22 18:37:06,706 | INFO | Abriendo login
+2026-06-22 18:37:06,985 | INFO | Login con usuario standard_user
+2026-06-22 18:37:11,068 | INFO | Login realizado
+2026-06-22 18:37:11,131 | INFO | Producto agregado
