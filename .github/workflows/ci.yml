@@ -1,0 +1,67 @@
+name: CI TalentoLab
+
+# EVENTOS: Se ejecuta cuando hacés push o pull request a main o develop
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    # RUNNER: Usamos Ubuntu porque es rápido y gratuito
+    runs-on: ubuntu-latest
+    env:
+      PYTHON_VERSION: '3.12'
+      PIP_CACHE: ~/.cache/pip
+      
+    # STEPS: El paso a paso de la ejecución
+    steps:
+      # 1. Traer el código de tu repositorio
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      # 2. Cachear dependencias para que futuras ejecuciones sean más rápidas
+      - name: Cache dependencias
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PIP_CACHE }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+
+      # 3. Instalar la versión fija de Python
+      - name: Instalar Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # 4. Instalar Chrome (Soluciona el error típico "ChromeDriver not found")
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      # 5. Instalar los requerimientos de tu framework
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 6. Crear carpetas de reportes (Soluciona el error "No artifacts found")
+      - name: Create reports directory
+        run: mkdir -p reports logs
+
+      # 7. Ejecutar todos tus tests de UI y API 
+      - name: Run Pytest
+        run: pytest tests/ tests_api/ -v --html=reports/pytest_report.html --self-contained-html
+
+      # 8. Subir los reportes visuales como "Artefactos" descargables
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report
+          path: reports/
+
+      # 9. Subir los logs
+      - name: Upload Suite Log
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-log
+          path: logs/

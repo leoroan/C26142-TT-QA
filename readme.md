@@ -120,5 +120,3 @@ Se utilizan endpoints de JSONPlaceholder:
 --------
 
 Leandro Maselli, para Talento-Tech:Automatización QA 2026
-
-chat url https://chatgpt.com/c/6a3165c3-a1ac-83e9-83d0-7a6eb3b4ecfa
