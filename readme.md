@@ -1,104 +1,124 @@
+# Entrega Final
+## Framework de Automatización de Pruebas 
+## 📌 Descripción
 
-# Proyecto de Automatización de Testing
+Proyecto es un framework de automatización de pruebas desarrollado en Python, que combina pruebas UI, API y BDD. 
 
-## Estructura del Proyecto
+Incluye ejecución automatizada, reportes HTML, logging y captura de evidencia en fallos.
 
-- [Clase 1](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_1)
-- [Clase 2](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_2)
-- [Clase 3](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_3)
-- [Clase 4](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_4)
-- [Clase 5](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_5)
-- [Clase 6](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_6)
-- [Clase 7](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_7)
-- [Clase 8](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_8)
-- [Pre-entrega](https://github.com/leoroan/C26142-TT-QA/tree/main/pre-entrega-automation-testing-leandro-maselli)
-- [Clase 9](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_9/pre-entrega-pom)
-- [Clase 10](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_10)
-- [Clase 11](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_11)
-- [Clase 12](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_12)
-- [Clase 14](https://github.com/leoroan/C26142-TT-QA/tree/main/clase_14)
+---
 
-## Descripción
+## 🧪 Tecnologías utilizadas
 
-Este repositorio contiene recursos y ejemplos para el curso de automatización de testing.
+- Python
+- Pytest
+- Selenium WebDriver
+- Requests
+- Behave (BDD)
+- Faker
+- pytest-html
 
-## Cómo usar
+---
 
-### Ejecutar tests con pytest
+## 📂 Estructura del proyecto
 
-Para ejecutar los tests, utiliza los siguientes comandos:
+  - pages/ # Page Object Model (UI)
+  - tests/ # Tests UI con Pytest
+  - tests_api/ # Tests de API con Requests
+  - tests_behave/ # Integración Behave + Pytest
+  - features/ # Features BDD (Gherkin)
+  - datos/ # Datos CSV y JSON
+  - utils/ # Logger y utilidades
+  - logs/ # Logs de ejecución
+  - reports/ # Reportes HTML y JSON
 
-```bash
-pytest -v .\test_someDesireScript.py --html=report.html --self-contained-html
-
-- Muestra cómo filtrar la ejecución:
-
-pytest -m smoke # solo tests “sumar”
-
-pytest -m exception # solo tests “dividir” con error
-
-- Reporte HTML
-
-Genera el informe con: pytest --html=report.html. (o el otro de arriba)
-
-```
-**Ejemplo de reporte generado**
-- [Reporte Calculadora.py con pytest](https://github.com/leoroan/C26142-TT-QA/blob/main/clase_4/tests/report.html) 
-
-Este comando ejecutará los tests en modo verbose (`-v`), generará un reporte HTML autónomo que se puede abrir en cualquier navegador.
-
-## Módulos Disponibles
-
-- **Clase 1**: Inicializacion, extensiones y brebe test.py file.
-- **Clase 2**: dos actividades simples para verificar el entorno.
-- **Clase 3**: un script de una calculadora con validaciones de errores con try/except
-- **Clase 4**: Introduccion a PyTest y Automatizacion Básica (proeycto con practica)
-- **Clase 5**: Introducción a HTML y Estructura de Páginas Web
-- **Clase 6**: DOM para Automatización
-- **Clase 7**: Introducción a Selenium WebDriver
-- **Clase 8**: Localización de Elementos y Acciones en Selenium
-- **pre entrega**: PRE-ENTREGA | Automatización QA
-
-
-## Requisitos
-
-- Python 3.14+
-- pytest
-- selenium
-- Dependencias listadas en `requirements.txt` (not-yet)
-
-## Instalación
+## ▶️ Instalación
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Selenium WebDrivers 
-*Cada navegador necesita su propio "conductor" para que Selenium pueda controlarlo:*
+▶️ Ejecución de pruebas
+-----------------------
 
-| Navegador | Driver | Descarga |
-| --- | --- | --- |
-| Chrome | ChromeDriver | https://googlechromelabs.github.io/chrome-for-testing/ |
-| Firefox | GeckoDriver | https://github.com/mozilla/geckodriver/releases |
-| Edge | msedgedriver | https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ |
+### Ejecutar todas las pruebas
 
-### Importante: Compatibilidad de versiones
+```
+pytest
+```
 
-**La versión del driver debe coincidir con la de tu navegador.** 
+* * * * *
 
-Por ejemplo, si tienes Chrome 123, descarga ChromeDriver 123. Si las versiones no coinciden obtendrás errores como `SessionNotCreatedException`.
+### Ejecutar pruebas específicas
 
-#### Ejemplo en windows x64
+```
+ - pytest tests/
+ - pytest tests_api/
+ - pytest tests_behave/
+```
 
-Ver versión de ChromeDriver
-Si ya descargaste el chromedriver.exe:
+* * * * *
 
-1. Abrí la terminal en VS Code con Ctrl + ñ
-2. Andá a la carpeta donde tenés el driver
-3. Ejecutá: .\chromedriver.exe --version
+### Ejecutar BDD (Behave)
 
-tambien podes descargar el driver dsde el enlace
-4. lo ejecutas y dejas correindo en el backl (funciona solo local)
-5. listo
+```
+behave
+```
 
-**Tip**: Desde Selenium 4.6+ podés usar `Selenium Manager` y evitar manejar drivers manualmente. Solo haces `webdriver.Chrome()` y descarga el driver correcto automáticamente.
+📊 Reportes
+-----------
+
+Se generan automáticamente en:
+
+```
+reports/report.html
+```
+
+Incluyen:
+
+-   resultados de tests
+-   duración
+-   fallos
+-   evidencia visual
+
+📸 Capturas de pantalla
+-----------------------
+
+Cuando un test falla, se genera automáticamente una captura en:
+
+```
+reports/screens/
+```
+
+* * * * *
+
+🌐 API Testing
+--------------
+
+Se utilizan endpoints de JSONPlaceholder:
+
+-   GET /posts
+-   POST /posts
+-   PATCH /posts
+-   DELETE /posts
+
+* * * * *
+
+🧠 Buenas prácticas aplicadas
+-----------------------------
+
+-   Page Object Model
+-   Data-driven testing (CSV/JSON)
+-   Separación de capas
+-   Logging centralizado
+-   Hooks de Pytest
+-   BDD con Gherkin
+
+* * * * *
+
+🚀 Autor
+--------
+
+Leandro Maselli, para Talento-Tech:Automatización QA 2026
+
+chat url https://chatgpt.com/c/6a3165c3-a1ac-83e9-83d0-7a6eb3b4ecfa
